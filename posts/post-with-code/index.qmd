@@ -1,0 +1,13 @@
+---
+title: "Post With Code"
+author: "Gop Arop"
+date: "01/31/2024"
+categories: [news, code, analysis]
+image: "codecode.jpg.webp"
+---
+
+This is a post with executable code.
+
+```{r}
+1 + 1
+```

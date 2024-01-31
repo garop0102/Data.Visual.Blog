@@ -1,0 +1,16 @@
+{
+  "hash": "3044a9dca9eeee1b00cc80f92015dc5c",
+  "result": {
+    "markdown": "---\ntitle: \"Test Post\"\nauthor: \"Gop Arop\"\ndate: \"01/31/2024\"\ncategories: [news]\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(palmerpenguins)\nlibrary(tidyverse)\nggplot(data = penguins, aes(x = bill_length_mm)) + geom_histogram(color = \"black\", fill = \"white\")\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
