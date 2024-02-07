@@ -1,0 +1,24 @@
+---
+title: "Are Drone strikes More Deadly?"
+author: "Gop Arop"
+date: "02/07/2024"
+categories: [news, code, analysis]
+image: "codecode.jpg.webp"
+---
+
+```{r}
+library(tidyverse)
+library(here)
+airstrikes <- read_csv(here("data/DroneWarsData.csv"))
+```
+
+```{r}
+library(lubridate)
+# airstrikes tidy
+airstrikes_tidy <- as_tibble(airstrikes) |>
+  mutate(Date = mdy(`Date (MM-DD-YYYY)`)) |>
+  select(!`Date (MM-DD-YYYY)`) |>
+  relocate(Date)
+```
+
+
