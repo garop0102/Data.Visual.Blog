@@ -1,12 +1,13 @@
 ---
-title: "Are Drone strikes More Deadly?"
+title: "Are Too Many Civilizans In The Way?"
 author: "Gop Arop"
 date: "02/07/2024"
 categories: [news, code, analysis]
-image: "codecode.jpg.webp"
+image: "civilian.jpg.webp"
 ---
 
 ```{r}
+#| warning: false
 library(tidyverse)
 library(here)
 airstrikes <- read_csv(here("data/DroneWarsData.csv"))
@@ -17,8 +18,10 @@ library(lubridate)
 # airstrikes tidy
 airstrikes_tidy <- as_tibble(airstrikes) |>
   mutate(Date = mdy(`Date (MM-DD-YYYY)`)) |>
-  select(!`Date (MM-DD-YYYY)`) |>
-  relocate(Date)
-```
+  select(!c(`Date (MM-DD-YYYY)`, 5:15)) |>
+  relocate(Date) |>
+  select(!9:12)
 
+airstrikes_tidy <- airstrikes_tidy[complete.cases(airstrikes_tidy[, 1:3]), ]
+```
 
