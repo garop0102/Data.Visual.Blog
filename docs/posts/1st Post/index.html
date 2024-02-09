@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+ <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/" rel="" target=""><i class="bi bi-github" role="img">
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Are Drone strikes More Deadly?</h1>
+      <h1 class="title">Are Too Many Civilizans In The Way?</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
                 <div class="quarto-category">code</div>
@@ -182,47 +182,120 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.2     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.0
-✔ ggplot2   3.4.2     ✔ tibble    3.2.1
-✔ lubridate 1.9.2     ✔ tidyr     1.3.0
-✔ purrr     1.0.1     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>airstrikes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/DroneWarsData2.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>here() starts at /Users/goparop/Documents/R-Projects/Data.Visual.Blog</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># airstrikes tidy</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>airstrikes_tidy <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(airstrikes) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">Date (MM-DD-YYYY)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">c</span>(<span class="st">`</span><span class="at">Date (MM-DD-YYYY)</span><span class="st">`</span>, <span class="dv">18</span><span class="sc">:</span><span class="dv">36</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(Date) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Longitude =</span> <span class="fu">as.numeric</span>(Longitude), <span class="at">Latitude =</span> <span class="fu">as.numeric</span>(Latitude))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>airstrikes_tidy <span class="ot">&lt;-</span> airstrikes_tidy[<span class="fu">complete.cases</span>(airstrikes_tidy[, <span class="dv">1</span><span class="sc">:</span><span class="dv">17</span>]),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>airstrikes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="fu">here</span>(<span class="st">"data/DroneWarsData.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The data set I will be working with is shown below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airstrikes_tidy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 17
+  Date       `Strike ID` Country  President `Most Specific Location`            
+  &lt;date&gt;     &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;                               
+1 2009-01-01 B50         Pakistan Bush      Kari Kot, South Waziristan, Pakistan
+2 2010-01-01 Ob53        Pakistan Obama     Ghundikala, North Waziristan, Pakis…
+3 2011-01-01 Ob181       Pakistan Obama     Mandi Khel, North Waziristan, Pakis…
+4 2011-01-01 Ob182       Pakistan Obama     Mandi Khel, North Waziristan, Pakis…
+5 2011-01-01 Ob183       Pakistan Obama     Datta Khel, North Waziristan, Pakis…
+6 2011-01-01 Ob184       Pakistan Obama     Boya, North Waziristan, Pakistan    
+# ℹ 12 more variables: `Most Specific Lat/Long` &lt;chr&gt;, Latitude &lt;dbl&gt;,
+#   Longitude &lt;dbl&gt;, `Minimum total people killed` &lt;dbl&gt;,
+#   `Maximum total people killed` &lt;dbl&gt;,
+#   `Minimum civilians reported killed` &lt;dbl&gt;,
+#   `Maximum civilians reported killed` &lt;dbl&gt;,
+#   `Minimum children reported killed` &lt;dbl&gt;,
+#   `Maximum children reported killed` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>The main variables that are of interest to me is <code>Date</code>, <code>Strike ID</code>, <code>Country</code>, <code>President</code>, <code>Reportedly drone?</code>, <code>US confirmed?</code>, <code>Maximum total people killed</code>, and <code>Maximum civilians reported killed</code>. Now just because I have an interest in these variables doesn’t mean they all will be utilized in my visualizations. In total this data set contained 1692 total observations, each one being a different air strike.</p>
+<p>As of my question of interest, I’ll be investigating the question, “Are there areas in the experiencing more civilian harm than others?”</p>
+<section id="data-context" class="level3">
+<h3 class="anchored" data-anchor-id="data-context">Data Context</h3>
+<p>The data was obtained from Github (https://dronewars.github.io/data/). The data was gathered from a collection of news reports, statements, documents, press releases, images, and videos from national and international outlets. All this information was obtained through The Bureau of Investigative Journalism, an independent and non-profit organization.</p>
+<p>The air strikes in the data are from the time period of November 3, 2002 - November 25, 2018. The data set provided insights into the geographic distribution of drone strikes across Afghanistan, Pakistan, Somalia, and Yemen.</p>
+<p>The data set also records the number of casualties resulting from air strikes, categorizing them as civilian(innocent or children) or militant.</p>
+</section>
+</section>
+<section id="visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations">Visualizations</h2>
+<div class="cell">
 <div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 573 Columns: 36
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(30): Strike ID, Country, Date (MM-DD-YYYY), President, Village/local ar... dbl
-(6): Reportedly drone?, US confirmed?, US only source?, Minimum strikes...
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...14`
-• `` -&gt; `...15`</code></pre>
+<pre><code>
+Attaching package: 'maps'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    map</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># airstrikes tidy</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>airstrikes_tidy <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(airstrikes) <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">mdy</span>(<span class="st">`</span><span class="at">Date (MM-DD-YYYY)</span><span class="st">`</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="st">`</span><span class="at">Date (MM-DD-YYYY)</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">relocate</span>(Date)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>, <span class="at">regions =</span> <span class="fu">c</span>(<span class="st">"Yemen"</span>, <span class="st">"Somalia"</span>, <span class="st">"Pakistan"</span>, <span class="st">"Afghanistan"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>map_strikes <span class="ot">&lt;-</span> <span class="fu">left_join</span>(map_data, airstrikes_tidy, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"region"</span> <span class="ot">=</span> <span class="st">"Country"</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>map_summary <span class="ot">&lt;-</span> map_strikes <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">civilian_ratio =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Maximum civilians reported killed</span><span class="st">`</span>) <span class="sc">/</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Other (Non-civilian/children Killed)</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span>) </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>map_strikes <span class="ot">&lt;-</span> <span class="fu">left_join</span>(map_strikes, map_summary, <span class="at">by =</span> <span class="st">"region"</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(map_strikes, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat , <span class="at">group =</span> group , <span class="at">fill =</span> civilian_ratio)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> <span class="st">"lightblue"</span>, <span class="at">high =</span> <span class="st">"darkblue"</span>, <span class="at">name =</span> <span class="st">"Avg. Civilians Killed</span><span class="sc">\n</span><span class="st">per 100 Militants"</span>) <span class="sc">+</span> <span class="fu">theme_void</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
+</div>
+<p>The map illustrates the average number of civilians killed per 100 classified militants in each country. Pakistan stands out with a notably high average, indicating a significant impact of drone strikes on civilian populations within the country. Somalia and Yemen also show relatively high averages compared to Afghanistan. The visualization underscores the disproportionate toll on civilian lives in regions affected by drone strikes, emphasizing the need for careful consideration of collateral damage and civilian protection in military operations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>strikes_time <span class="ot">&lt;-</span> airstrikes_tidy <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">year</span>(Date),Country) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ratio_civilians =</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Maximum civilians reported killed</span><span class="st">`</span>) <span class="sc">/</span> <span class="fu">sum</span>(<span class="st">`</span><span class="at">Other (Non-civilian/children Killed)</span><span class="st">`</span>) <span class="sc">*</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'year(Date)'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> strikes_time, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">`</span><span class="at">year(Date)</span><span class="st">`</span>, <span class="at">y =</span> ratio_civilians, <span class="at">colour =</span> Country)) <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_color_discrete</span>() <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time Plot of Civilians Killed per 100 Militants"</span>, <span class="at">x =</span> <span class="st">"Year"</span>, <span class="at">y =</span> <span class="st">"Number Killed per 100"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This time series plot visualizes the trend of civilians killed per 100 militants over the years across different countries affected by drone strikes. Each line represents a specific country, color-coded for easy identification.</p>
+<p>The data shows a sharp increase in civilian casualties in Pakistan from 2004 to 2007, with figures reaching alarming levels in 2005 and 2007.</p>
+<p>Afghanistan’s data, available from 2015 on wards, indicates a moderate level of civilian casualties per 100 militants</p>
+<p>Yemen shows varying trends, with minimal spikes in civilian casualties throughout the years.</p>
+<p>Somalia experiences relatively lower but fluctuating levels of civilian casualties compared to Pakistan. Notable spikes occur in 2007 and 2008, followed by periods of decreased casualties.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<section id="flaws-future-direction" class="level3">
+<h3 class="anchored" data-anchor-id="flaws-future-direction">Flaws &amp; Future Direction</h3>
+<p>The data set may suffer from limitations such as incomplete or inaccurate reporting. Especially from particularly in conflict zones where access to information is restricted. Also, the map and time series plot focus on specific variables such as civilian casualties and their trends over time. But, it is pretty limited in providing a comprehensive understanding of the broader impact of drone warfare. Such as the emotional toll, the economic effects, and the long term injuries and illnesses that civilians are more likely to endure.</p>
+<p>In the future I could incorporate more analysis and contextual information to provide a more nuanced understanding of the factors influencing civilian casualties in drone warfare. Thing such as examining political, social, and economic dynamics will give better context. I could also add text to label the countries in my map.</p>
+</section>
+</section>
+<section id="connection-to-class" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-class">Connection to Class</h2>
+<p>The time series plot and map visualization derived from the Drone Wars data set offer effective ways of communicating information about civilian casualties in regions affected by drone warfare. The time series plot enables comparison of different countries by visualizing trends of civilian casualties per 100 militants over time. This helps facilitate a effective way to do comparisons between regions and time periods.</p>
+<p>Similarly, the map visualization presents spatial data in a clear and readable fashion, displaying the geographical distribution of average civilian casualties per 100 militants across different countries. The use of color gradients emphasizes areas with higher or lower levels of civilian harm, allowing for easy comparison between regions and highlighting regional disparities. Both visualizations I believe leverage temporal and spatial data to provide insights into trends and patterns. Along with effectively communicating complex information in an accessible manner.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

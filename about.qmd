@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "About Me"
 image: profile.jpg
 about:
   template: jolla
@@ -16,4 +16,4 @@ about:
 
 ---
 
-About this blog
+I'm Gop and I am taking data visualizations this semester. 
