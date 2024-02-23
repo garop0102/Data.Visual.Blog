@@ -26,6 +26,9 @@ airstrikes_tidy <- airstrikes_tidy[complete.cases(airstrikes_tidy[, 1:17]),]
 
 ## Introduction
 
+Welcome to my 1st Blog Post!
+
+
 The data set I will be working with is shown below.
 
 ```{r, warning=FALSE}

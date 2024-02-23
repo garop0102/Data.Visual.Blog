@@ -15,9 +15,11 @@ music_health$`Music effects` <- as.factor(music_health$`Music effects`)
 
 ## Introduction
 
+Welcome to my 2nd Blog Post!
+
 The following data set I am working with, is from the results of a self-reported survey on the effects of music on a person's mental health status. The data set is shown below..
 
-```{r}
+```{r warning=FALSE}
 head(music_health)
 ```
 
