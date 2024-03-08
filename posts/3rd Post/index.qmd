@@ -43,7 +43,7 @@ The data set utilized for this analysis is from the Human Freedom Index 2023 (HF
 
 ### Change in Personal Freedom Rank per region over time.
 ```{r warning=FALSE, message=FALSE}
-freedom_plot <- freedom |> filter(!is.na(pf_score))
+freedom_plot <- freedom |> filter(!is.na(pf_rank))
 
 ggplot(data = freedom_plot, aes(x = year, y = pf_rank)) +
   geom_line(aes(group = countries), color = "gray70", alpha = 0.6) +
