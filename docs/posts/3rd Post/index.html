@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="change-in-personal-freedom-rank-per-region-over-time." class="level3">
 <h3 class="anchored" data-anchor-id="change-in-personal-freedom-rank-per-region-over-time.">Change in Personal Freedom Rank per region over time.</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>freedom_plot <span class="ot">&lt;-</span> freedom <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pf_score))</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>freedom_plot <span class="ot">&lt;-</span> freedom <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pf_rank))</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> freedom_plot, <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> pf_rank)) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> countries), <span class="at">color =</span> <span class="st">"gray70"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>From the plot it looks as though the region that experienced the sharpest increase in ranking throughout the span of 21 years would have to be the Caucasus &amp; Central Asia region. Also worth noting, the Middle East &amp; North Africa region is seen to have a steady decrease in ranking. The East Asian region is also in a decrease albeit a slight and minimal one. It would be interesting to explore the factors contributing to these contrasting trends.</p>
 </section>
 <section id="change-in-freedom-scores-in-russia-and-united-states" class="level3">
-<h3 class="anchored" data-anchor-id="change-in-freedom-scores-in-russia-and-united-states">Change in Freedom scores in Russia and United States</h3>
+<h3 class="anchored" data-anchor-id="change-in-freedom-scores-in-russia-and-united-states">Change in Freedom Scores in Russia and United States</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>freedom_us <span class="ot">&lt;-</span> freedom <span class="sc">|&gt;</span> <span class="fu">filter</span>(countries <span class="sc">==</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span> <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"pf_movement_vdem_women"</span>, <span class="st">"ef_government_investment"</span>,<span class="st">"pf_rol_criminal"</span>,<span class="st">"pf_ss_homicide"</span>), <span class="at">names_to =</span> <span class="st">"variables"</span>, <span class="at">values_to =</span> <span class="st">"scores"</span>) <span class="sc">|&gt;</span> <span class="fu">relocate</span>(<span class="st">"scores"</span>, <span class="st">"variables"</span>) <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(scores))</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -315,7 +315,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Some limitations to consider regarding the Human Freedom Index (HFI) data set can be focused on data availability and a limited scope.</p>
+<p>Some limitations to consider regarding my approach to the Human Freedom Index (HFI) data set can be focused on data availability and a limited scope. The HFI takes data from all different kinds of sources. Doing this leaves to question the quality and comprehensiveness of the data since each source is different. I also could provide a bit more information into the variability of the overall scores and how much change has occurred on average to those scores. Also, aspects of such as health, income, environment quality, and education could have been taken into account.</p>
+<p>The directions I could go with this data set is truly endless. For one, I could explore deeper the many other variables that were accounted for in the data set, 146 in total. I could also incorporate additional information regarding these countries to see if there are any patterns with scores and other factors such as education or health.</p>
+</section>
+<section id="connection-to-class" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-class">Connection to Class</h2>
+<p>The line graphs in the US and Russia plots reveal trends in HFI scores over time for each country and subcategory. The viewers can easily identify periods of improvement or decline in specific aspects of freedom. The facet wrap also allows for easier comparison of the different variables pertaining to freedom.</p>
+<p>Also, the facet wrap in the regional freedom rank plot allows for comparisons across regions. The smoothing helps visualize the general trend of personal freedom rank over time within each region.</p>
+<p>Finally, the separate plots for the top and bottom 20 countries focuses on overall HFI scores for the year 2021, allowing viewers to easily compare extremes in HFI scores in a way that is clear and concise.</p>
 
 
 </section>
