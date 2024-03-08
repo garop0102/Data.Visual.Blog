@@ -57,7 +57,7 @@ ggplot(data = freedom_plot, aes(x = year, y = pf_rank)) +
 From the plot it looks as though the region that experienced the sharpest increase in ranking throughout the span of 21 years would have to be the Caucasus & Central Asia region. Also worth noting, the Middle East & North Africa region is seen to have a steady decrease in ranking. The East Asian region is also in a decrease albeit a slight and minimal one. It would be interesting to explore the factors contributing to these contrasting trends.
 
 
-### Change in Freedom scores in Russia and United States
+### Change in Freedom Scores in Russia and United States
 ```{r}
 freedom_us <- freedom |> filter(countries == "United States") |> pivot_longer(cols = c("pf_movement_vdem_women", "ef_government_investment","pf_rol_criminal","pf_ss_homicide"), names_to = "variables", values_to = "scores") |> relocate("scores", "variables") |> filter(!is.na(scores))
 
