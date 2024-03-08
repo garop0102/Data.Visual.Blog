@@ -3,17 +3,19 @@ project:
   output-dir: docs
 
 website:
-  title: "Data Visualization Blog"
+  title: "Gop's Data Visualization Blog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/garop0102
+      - icon: linkedin
+        href: https://www.linkedin.com/in/gop-arop/
 format:
   html:
-    theme: lux
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
 
 
