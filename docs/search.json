@@ -28,6 +28,13 @@
     "text": "Conclusion\nSome limitations to consider regarding my approach to the Human Freedom Index (HFI) data set can be focused on data availability and a limited scope. The HFI takes data from all different kinds of sources. Doing this leaves to question the quality and comprehensiveness of the data since each source is different. I also could provide a bit more information into the variability of the overall scores and how much change has occurred on average to those scores. Also, aspects of such as health, income, environment quality, and education could have been taken into account.\nThe directions I could go with this data set is truly endless. For one, I could explore deeper the many other variables that were accounted for in the data set, 146 in total. I could also incorporate additional information regarding these countries to see if there are any patterns with scores and other factors such as education or health."
   },
   {
+    "objectID": "posts/3rd Post/index.html#connection-to-class",
+    "href": "posts/3rd Post/index.html#connection-to-class",
+    "title": "A Look Into Freedom",
+    "section": "Connection to Class",
+    "text": "Connection to Class\nThe line graphs in the US and Russia plots reveal trends in HFI scores over time for each country and subcategory. The viewers can easily identify periods of improvement or decline in specific aspects of freedom. The facet wrap also allows for easier comparison of the different variables pertaining to freedom.\nAlso, the facet wrap in the regional freedom rank plot allows for comparisons across regions. The smoothing helps visualize the general trend of personal freedom rank over time within each region.\nFinally, the separate plots for the top and bottom 20 countries focuses on overall HFI scores for the year 2021, allowing viewers to easily compare extremes in HFI scores in a way that is clear and concise."
+  },
+  {
     "objectID": "posts/1st Post/index.html",
     "href": "posts/1st Post/index.html",
     "title": "Are Too Many Civilizans In The Way?",
@@ -110,12 +117,5 @@
     "title": "About Me",
     "section": "",
     "text": "Welcome to my Blog!\nMy name is Gop Arop and I am a student at St. Lawrence University majoring in Data Science.\nHope whoever reads enjoys."
-  },
-  {
-    "objectID": "posts/3rd Post/index.html#connection-to-class",
-    "href": "posts/3rd Post/index.html#connection-to-class",
-    "title": "A Look Into Freedom",
-    "section": "Connection to Class",
-    "text": "Connection to Class\nThe line graphs in the US and Russia plots reveal trends in HFI scores over time for each country and subcategory. The viewers can easily identify periods of improvement or decline in specific aspects of freedom. The facet wrap also allows for easier comparison of the different variables pertaining to freedom.\nAlso, the facet wrap in the regional freedom rank plot allows for comparisons across regions. The smoothing helps visualize the general trend of personal freedom rank over time within each region.\nFinally, the separate plots for the top and bottom 20 countries focuses on overall HFI scores for the year 2021, allowing viewers to easily compare extremes in HFI scores in a way that is clear and concise."
   }
 ]
