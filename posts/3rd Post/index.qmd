@@ -97,7 +97,7 @@ ggplot(data = freedom_top20, aes(x = countries, y = hf_score)) +
   geom_point(aes(color = hf_score), size = 4, alpha = 2) +
   coord_flip() +
   theme_minimal() + labs(title = "Top 20 Human Freedom Scores in 2021", x = "Countries", y = "Human Freedom Score") + 
-  theme(panel.grid.major = element_line(linetype = "dashed"), panel.grid.minor = element_blank()) +
+  theme(panel.grid.major = element_line(linetype = "dashed"), panel.grid.minor = element_blank(), legend.position = "none") +
   scale_color_viridis_c(name = "scale")
 
 ```
@@ -111,7 +111,7 @@ freedom_last20 <- freedom |>
   filter(year == 2021) |>
   reframe(hf_score) |>
   arrange((hf_score)) |>
-  mutate(countries = fct_reorder(.f = countries, .x = hf_score)) |>
+  mutate(countries = fct_reorder(.f = countries, .x = hf_score, .desc = TRUE)) |>
   slice(1:20)
 
 ggplot(data = freedom_last20, aes(x = countries, y = hf_score)) + 
@@ -119,7 +119,7 @@ ggplot(data = freedom_last20, aes(x = countries, y = hf_score)) +
   geom_point(aes(color = hf_score), size = 4, alpha = 2) +
   coord_flip() +
   theme_minimal() + labs(title = "Bottom 20 Human Freedom Scores in 2021", x = "Countries", y = "Human Freedom Score") + 
-  theme(panel.grid.major = element_line(linetype = "dashed"), panel.grid.minor = element_blank()) +
+  theme(panel.grid.major = element_line(linetype = "dashed"), panel.grid.minor = element_blank(), legend.position = "none") +
   scale_color_viridis_c(name = "scale")
 ```
 
